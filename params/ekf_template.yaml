@@ -23,9 +23,10 @@ world_frame: odom           # Defaults to the value of odom_frame if unspecified
 #odom0_differential: false
 
 twist0: /mmWaveDataHdl/velocity
+# values is x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az.
 twist0_config: [false, false, false,
                 false, false, false,
-                true,  false,  true,
+                true,  false, false,
                 false, false, false,
                 false, false, false]
 twist0_queue_size: 3
@@ -35,14 +36,16 @@ twist0_nodelay: false
 # Jackal's IMU is in ENU frame so it conforms to REP-103
 imu0: /imu/data_added_cov
 imu0_config: [false, false, false,
-              true,  true,  true,
+              true, true, true,
               false, false, false,
               false, false, false,
-              false, false, false,]
+              false, false, false]
+# We can also set the ang rate to true and it will still work
+# Do not fuse accel, it will blow up
 imu0_nodelay: false
 imu0_differential: false
 imu0_relative: true
 imu0_queue_size: 5
-imu0_pose_rejection_threshold: 0.8                 # Note the difference in parameter names
+#imu0_pose_rejection_threshold: 0.8                 # Note the difference in parameter names
 #imu0_twist_rejection_threshold: 0.8                #
 #imu0_linear_acceleration_rejection_threshold: 0.8  #
